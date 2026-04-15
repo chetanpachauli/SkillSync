@@ -1,0 +1,103 @@
+-------------------------------------------------
+|  Navbar: Logo | Home | Tools | Login | Signup |
+-------------------------------------------------
+|                                                  |
+|         [SkillSync Logo & Headline]              |
+|      "Ace Interviews with AI-Powered Help"       |
+|                                                  |
+|    [Upload Resume]   [Try Demo]   [Sign In]      |
+|                                                  |
+|     [How it Works]   [Features]   [FAQ]          |
+|                                                  |
+-------------------------------------------------
+|                Footer with links                |
+-------------------------------------------------
+
+
+<!--  -->
+
+-----------------------------------------------
+|                Upload Your Resume            |
+-----------------------------------------------
+| [ Drag & Drop PDF Area ]                     |
+| OR                                           |
+| [ Choose File Button ]                       |
+|                                             |
+|  [✔️ Resume Parsed Successfully!]            |
+|                                             |
+| [Next: Analyze Resume ➡️]                    |
+-----------------------------------------------
+
+<!--  -->
+
+----------------------------------------------------
+| ✅ Resume Analysis Summary                        |
+----------------------------------------------------
+| • 📈 Overall Score: 78/100                        |
+| • 📌 Key Issues:                                  |
+|    - Missing keywords                             |
+|    - Lack of action verbs                         |
+|    - Weak summary section                         |
+|                                                  |
+| [🔍 View Full Breakdown] [🔄 Upload Another]       |
+----------------------------------------------------
+|      [📥 Download Suggestions as PDF]             |
+----------------------------------------------------
+
+<!--  -->
+
+--------------------------------------------------
+| 👋 Welcome, Sameer                              |
+--------------------------------------------------
+| [Choose Role]  ⬇ Frontend Developer             |
+|                                                  |
+| [Start Interview Simulation]                    |
+|                                                  |
+| Q1: "What are React Hooks?"                     |
+| > [Your Answer Field]                           |
+|                                                  |
+| [💡 Hint]   [🔄 Next Question]   [✅ Submit]      |
+--------------------------------------------------
+|  [📝 View All Questions]   [📊 See Progress]     |
+--------------------------------------------------
+
+
+<!--  -->
+
+----------------------------------------------
+|              Login to SkillSync            |
+----------------------------------------------
+| [Email] _______________________            |
+| [Password] ____________________ [👁]        |
+| [🔐 Sign In]                               |
+|--------------------------------------------|
+| [Continue with Google] [Continue with GitHub] |
+| Don't have an account? [Sign up]           |
+----------------------------------------------
+
+
+<!--  -->
+
+----------------------------------------------------
+| Sidebar: Dashboard | Resume | Interviews | Logout |
+----------------------------------------------------
+| Welcome, Sameer!                                |
+|--------------------------------------------------|
+| 📄 My Resume Uploads (2)                        |
+| 🤖 AI Practice Sessions (4)                     |
+| 📈 Resume Score: 78                             |
+| 🔁 Improve Resume Again                         |
+| 📥 Download Report                              |
+----------------------------------------------------
+
+
+
+<!--  -->
+---------------------------------------------------
+| Admin Dashboard                                 |
+---------------------------------------------------
+| Total Users: 238                                |
+| Feedbacks: 54                                   |
+| Top Roles Practiced: Fullstack, SDE, DS         |
+| Export Logs [CSV]                               |
+---------------------------------------------------
