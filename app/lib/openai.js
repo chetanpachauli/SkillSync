@@ -1,6 +1,4 @@
-// lib/openai.js
-import OpenAI from 'openai';
+// OpenAI support has been disabled in favor of Google Gemini.
+// Use the server routes under app/api/ai-interview and app/api/generate-quiz.
 
-export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+export const openai = null;

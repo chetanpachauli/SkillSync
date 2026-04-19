@@ -15,12 +15,12 @@ const skills = [
 const socialLinks = [
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/sameer-negi",
+    url: "https://www.linkedin.com/in/chetan-pachauli",
     icon: <Linkedin className="w-5 h-5" />,
   },
   {
     name: "GitHub",
-    url: "https://github.com/Sameer1311",
+    url: "https://github.com/chetanpachauli",
     icon: <Github className="w-5 h-5" />,
   },
   {
@@ -30,7 +30,7 @@ const socialLinks = [
   },
   {
     name: "Portfolio",
-    url: "https://negisameer.live/",
+    url: "https://chetanpachauli.github.io/",
     icon: <Laptop className="w-5 h-5" />,
   }
 ];
@@ -56,7 +56,7 @@ const Developer = () => {
 
         {/* Introduction */}
         <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-          Hello! {"I'm"} <span className="font-semibold text-primary">Sameer Negi</span>, a passionate Full-Stack Developer who loves building modern, efficient, and user-friendly web applications. I thrive in solving complex problems and designing elegant, scalable solutions.
+          Hello! {"I'm"} <span className="font-semibold text-primary">Chetan Pachauli</span>, a passionate Full-Stack Developer who loves building modern, efficient, and user-friendly web applications. I thrive in solving complex problems and designing elegant, scalable solutions.
         </p>
 
         {/* Skills & What I Do Section */}
