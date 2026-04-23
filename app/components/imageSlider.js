@@ -34,6 +34,8 @@ const ImageSlider = () => {
             src={src}
             alt={`Slide ${index + 1}`}
             fill
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
             className="object-contain transition-transform duration-1000"
           />
         </div>
