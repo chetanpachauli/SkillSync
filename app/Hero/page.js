@@ -51,7 +51,7 @@ const Hero = () => {
       className="hover:scale-110 transition-transform hover:text-black dark:hover:text-white"
     />
   </Link>
-  <Link href="https://leetcode.com/u/Codesameer" target="_blank" rel="noopener noreferrer">
+  <Link href="https://leetcode.com/u/ChetanPachauli" target="_blank" rel="noopener noreferrer">
     <Image
       src="/images/leetcode.svg"
       alt="LeetCode"

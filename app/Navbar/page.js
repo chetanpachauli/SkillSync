@@ -102,8 +102,6 @@ const Navbar = () => {
               {session.user.name?.split(" ")[0] || session.user.email}
             </span>
           )}
-
-          <ModeToggle />
         </div>
       )}
     </nav>

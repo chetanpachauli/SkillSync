@@ -12,12 +12,7 @@ export function ModeToggle() {
     setTheme(theme === "light" ? "dark" : "light")
   }
 
-  React.useEffect(() => {
-    if (theme) {
-      console.log("Theme updated to:", theme)
-    }
-  }, [theme]) // Runs every time `theme` changes
-
+  
   return (
     <Button variant="outline" size="icon" onClick={toggleTheme}>
       {theme === "light" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}

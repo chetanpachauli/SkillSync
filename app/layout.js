@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: "ChetanAi - AI Interview Prep & Resume Analyzer",
   description: "AI Interview Prep & Resume Analyzer",
   icons: {
