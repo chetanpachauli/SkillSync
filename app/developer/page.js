@@ -25,12 +25,12 @@ const socialLinks = [
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/negisameer_106",
+    url: "https://www.instagram.com/chetan_pachauli07",
     icon: <Instagram className="w-5 h-5" />,
   },
   {
     name: "Portfolio",
-    url: "https://chetanpachauli.github.io/",
+    url: "https://chetanpachauli.github.io/Chetan-portfolio/",
     icon: <Laptop className="w-5 h-5" />,
   }
 ];

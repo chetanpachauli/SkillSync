@@ -39,19 +39,19 @@ const Hero = () => {
           </Link>
         </div>
 <div className="flex w-full items-center justify-center mx-2 space-x-4 text-zinc-700 dark:text-white text-2xl">
-  <Link href="https://www.linkedin.com/in/sameer-negi-52a85b336/" target="_blank">
+  <Link href="https://www.linkedin.com/in/chetan-pachauli/" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon
       icon={faLinkedinIn}
       className="hover:scale-110 transition-transform hover:text-blue-600"
     />
   </Link>
-  <Link href="https://github.com/Sameer1311" target="_blank">
+  <Link href="https://github.com/chetanpachauli" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon
       icon={faGithub}
       className="hover:scale-110 transition-transform hover:text-black dark:hover:text-white"
     />
   </Link>
-  <Link href="https://leetcode.com/u/Codesameer" target="_blank">
+  <Link href="https://leetcode.com/u/Codesameer" target="_blank" rel="noopener noreferrer">
     <Image
       src="/images/leetcode.svg"
       alt="LeetCode"

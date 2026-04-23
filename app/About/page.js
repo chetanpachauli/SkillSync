@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
 const About = () => {
   return (
     <section
@@ -18,77 +19,108 @@ const About = () => {
     >
       {/* Header */}
       <div className="space-y-4 max-w-3xl mx-auto">
-        <h4 className="uppercase text-sm tracking-widest text-zinc-500 dark:text-zinc-400">
-          About SkillSync
-        </h4>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-snug">
-          Empowering Careers with AI-Driven Precision
+        <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white">
+          About <span className="text-blue-600">SkillSync</span>
         </h2>
-        <p className="text-zinc-600 dark:text-zinc-300 text-base md:text-lg">
-          SkillSync is an intelligent platform that helps you prepare for
-          interviews, optimize your resume, and analyze job trends—all powered
-          by AI. {"It's"} your personal tech career accelerator.
+        <p className="text-lg text-zinc-600 dark:text-zinc-300">
+          Your AI-powered companion for career growth and interview success
         </p>
       </div>
 
-      {/* Core Features */}
-      <div className="bg-green-700 dark:bg-green-800 text-white rounded-xl py-8 px-4 md:px-12 max-w-5xl mx-auto shadow-md">
-        <div className="flex flex-col gap-y-8 gap-x-6 text-center">
-          <div className="flex items-center justify-between ">
-            <div className="flex flex-col items-center gap-2">
-              <BrainCircuit size={32} />
-              <p className="text-sm font-medium">AI-Powered</p>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <SearchCheck size={32} />
-              <p className="text-sm font-medium">Mock Interviews</p>
+      {/* Features Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col items-center space-y-4 p-6 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+          <BrainCircuit size={48} className="text-blue-600" />
+          <h3 className="text-xl font-semibold">AI-Powered Learning</h3>
+          <p className="text-zinc-600 dark:text-zinc-300">
+            Advanced artificial intelligence helps you learn and practice with personalized feedback
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center space-y-4 p-6 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+          <Target size={48} className="text-green-600" />
+          <h3 className="text-xl font-semibold">Goal-Oriented</h3>
+          <p className="text-zinc-600 dark:text-zinc-300">
+            Focused approach to help you achieve specific career goals and land your dream job
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center space-y-4 p-6 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+          <Eye size={48} className="text-purple-600" />
+          <h3 className="text-xl font-semibold">Expert Insights</h3>
+          <p className="text-zinc-600 dark:text-zinc-300">
+            Industry-relevant content and interview questions from real tech professionals
+          </p>
+        </div>
+      </div>
+
+      {/* Key Features */}
+      <div className="space-y-8 max-w-4xl mx-auto">
+        <h3 className="text-3xl font-bold text-zinc-900 dark:text-white">
+          What Makes Us Different
+        </h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+          <div className="flex items-start space-x-4">
+            <Sparkles className="text-blue-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">Smart Interview Prep</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                Practice with AI that adapts to your skill level and provides real-time feedback
+              </p>
             </div>
           </div>
-          <div className="flex items-center justify-evenly space-x-5 md:space-x-10">
-            <div className="flex flex-col items-center gap-2">
-              <FileText size={32} />
-              <p className="text-sm font-medium">Resume maker</p>
+
+          <div className="flex items-start space-x-4">
+            <FileText className="text-green-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">Resume Optimization</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                Build and refine your resume with AI-powered suggestions and formatting
+              </p>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <Sparkles size={32} />
-              <p className="text-sm font-medium">Personalized Feedback</p>
+          </div>
+
+          <div className="flex items-start space-x-4">
+            <SearchCheck className="text-purple-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">Skill Assessment</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                Identify your strengths and areas for improvement with comprehensive skill analysis
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start space-x-4">
+            <BrainCircuit className="text-orange-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">24/7 Availability</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                Practice and learn anytime, anywhere with our always-available AI assistant
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Vision & Mission */}
-      <div className="bg-white dark:bg-zinc-800 rounded-3xl shadow-xl py-12 px-6 md:px-16 max-w-6xl mx-auto space-y-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left text-zinc-700 dark:text-zinc-200">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-green-700 dark:text-green-400 font-semibold">
-              <Eye size={20} />
-              <span>Vision</span>
-            </div>
-            <p className="text-sm md:text-base">
-              To redefine interview preparation by blending technology and
-              psychology—ensuring every candidate walks in with confidence.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-green-700 dark:text-green-400 font-semibold">
-              <Target size={20} />
-              <span>Mission</span>
-            </div>
-            <p className="text-sm md:text-base">
-              To build AI-powered tools that guide tech aspirants through resume
-              enhancement, real-time interview simulations, and intelligent job
-              readiness.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-center pt-6">
-        <Link href="/Intro">
-          <Button className="bg-green-800 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm">
-            Explore SkillSync
-          </Button>
+      {/* CTA */}
+      <div className="space-y-6">
+        <h3 className="text-3xl font-bold text-zinc-900 dark:text-white">
+          Ready to Transform Your Career?
+        </h3>
+        <p className="text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
+          Join thousands of professionals who have accelerated their careers with SkillSync
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/Aiprep">
+            <Button size="lg" className="w-full sm:w-auto">
+              Start Practicing
+            </Button>
+          </Link>
+          <Link href="/Resume_Builder">
+            <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              Build Resume
+            </Button>
           </Link>
         </div>
       </div>

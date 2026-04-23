@@ -49,7 +49,7 @@ const handleDownload = () => {
             alt="logo of SkillSync"
             width={36}
             height={36}
-            src="/images/s-square.svg"
+            src="/images/c-square.png"
             className="dark:invert"
           />
         </div>

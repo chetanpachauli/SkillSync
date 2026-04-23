@@ -58,12 +58,13 @@ const Footer = () => {
             Connect
           </h4>
           <div className="flex justify-center md:justify-start gap-4 text-zinc-600 dark:text-zinc-400">
-            <Link href="chetanpachauli@gmail.com" aria-label="Email">
+            <Link href="mailto:chetanpachauli@gmail.com" aria-label="Email">
               <Mail size={20} />
             </Link>
             <Link
               href="https://github.com/chetanpachauli"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="GitHub"
             >
               <Github size={20} />
@@ -71,6 +72,7 @@ const Footer = () => {
             <Link
               href="https://www.linkedin.com/in/chetan-pachauli"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />

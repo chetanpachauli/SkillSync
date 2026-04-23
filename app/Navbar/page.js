@@ -85,7 +85,7 @@ const Navbar = () => {
       {Sm_Open && (
         <div className="md:hidden flex flex-col items-center space-y-4 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 shadow-md py-4 px-6 animate-fade-in-down">
           <Link
-            href="#Developer"
+            href="/developer"
             className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
           >
             Developer
@@ -97,23 +97,12 @@ const Navbar = () => {
             Features
           </Link>
          
-                <div className="md:hidden flex items-center gap-2 space-x-4">
           {session?.user && (
             <span className="font-pixel text-blue-500">
               {session.user.name?.split(" ")[0] || session.user.email}
             </span>
           )}
 
-          <ModeToggle />
-          <button onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? (
-              <XIcon className="w-6 h-6" />
-            ) : (
-              <MenuIcon className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-  
           <ModeToggle />
         </div>
       )}
