@@ -1,112 +1,221 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
+// ✅ helper: timeout fetch
+async function fetchWithTimeout(url, options, timeout = 8000) {
+  return Promise.race([
+    fetch(url, options),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Timeout")), timeout)
+    ),
+  ]);
+}
+
 export async function POST(req) {
   try {
-    console.log("Starting AI interview request...");
-
-    const geminiKey = process.env.GEMINI_API_KEY;
-    console.log("GEMINI_API_KEY present:", !!geminiKey);
-
-    if (!geminiKey) {
-      console.error("Missing Gemini API key");
-      return NextResponse.json(
-        { error: "Missing Gemini API key in server environment." },
-        { status: 500 }
-      );
-    }
-
-    const genAI = new GoogleGenerativeAI(geminiKey);
-    console.log("GoogleGenerativeAI initialized");
-
     const body = await req.json();
-    console.log("Request body received:", !!body);
-
     const { messages } = body;
-    console.log("Messages array:", Array.isArray(messages), messages?.length);
 
-    const userMessage = messages?.[messages.length - 1]?.content || messages?.message;
-    console.log("User message extracted:", !!userMessage, userMessage?.substring(0, 50));
+    const userMessage =
+      messages?.[messages.length - 1]?.content || messages?.message;
 
     if (!userMessage) {
-      console.error("No message provided in request");
       return NextResponse.json(
-        { error: "No message provided" },
+        { success: false, reply: "Invalid input" },
         { status: 400 }
       );
     }
 
-    console.log("Creating Gemini model...");
-    let model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-    let chat = model.startChat();
-    console.log("Chat session started with gemini-2.5-flash");
+    const systemPrompt = `
+You are an expert AI Assistant for SkillSync.
 
-    const prompt = `You are an expert AI Assistant designed to assist a developer with "SkillSync". You have two distinct modes based on user intent:
+MODE 1: Technical Interviewer
+- Answer
+- Feedback
+- Ask 1 follow-up question
 
-MODE 1: TECHNICAL INTERVIEWER
-If the user provides a response to an interview question or asks a technical query, act as a professional interviewer.
-- Provide a concise, clear technical answer if asked.
-- Evaluate the user's previous answer with constructive feedback.
-- ALWAYS ask exactly one relevant follow-up question.
-- Format:
-  1. Answer: [Your text]
-  2. Feedback: [Your text]
-  3. Follow-up Question: [Your text]
+MODE 2: Quiz Generator
+- Return ONLY JSON array
 
-MODE 2: QUIZ GENERATOR
-If the user asks for a quiz or topic-based questions, generate a structured quiz.
-- Return ONLY valid JSON array.
-- No conversational text, no intro, no outro.
-- Format:
-  [
-    {
-      "question": "String",
-      "options": ["A", "B", "C", "D"],
-      "answer": "String"
-    }
-  ]
+User: ${userMessage}
+`;
 
-DETECTION RULES:
-- Detect the mode automatically based on the user's message.
-- If the intent is unclear, default to INTERVIEWER mode.
-- Maintain a professional and structured tone.
-- Current User Input: ${userMessage}`;
-
-    console.log("Sending message to Gemini...");
-    let result;
+   // =========================
+   // 1️⃣ GROQ (BEST PRIMARY)
+   // =========================
     try {
-      result = await chat.sendMessage(prompt);
-    } catch (sendError) {
-      const message = sendError?.message || "";
-      console.warn("Gemini sendMessage failed, retrying with gemini-2.5-pro if possible:", message);
-      if (message.includes("models/gemini-2.5-flash") || message.includes("model not found")) {
-        model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
-        chat = model.startChat();
-        console.log("Retrying with gemini-2.5-pro");
-        result = await chat.sendMessage(prompt);
+      console.log("➡️ Trying Groq...");
+
+      const res = await fetchWithTimeout(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "llama-3.3-70b-versatile",
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: userMessage },
+            ],
+          }),
+        },
+        8000
+      );
+
+      const data = await res.json();
+
+      if (res.ok && data.choices) {
+        console.log("✅ Groq success");
+
+        return NextResponse.json({
+          success: true,
+          reply: data.choices[0].message.content,
+        });
       } else {
-        throw sendError;
+        console.log("❌ Groq failed:", data);
       }
+    } catch (err) {
+      console.log("❌ Groq error:", err.message);
     }
 
-    console.log("Gemini response received");
-    const response = await result.response;
-    const text = await response.text();
-    console.log("Response text length:", text?.length);
+    //=========================
+   // 2️⃣ OPENROUTER
+   // =========================
+ try {
+  console.log("➡️ Trying OpenRouter...");
 
-    const reply = text?.trim() || "I could not generate a response.";
-    console.log("Final reply prepared");
+  const key = process.env.OPENROUTER_API_KEY;
 
-    return NextResponse.json({ reply });
-  } catch (err) {
-    console.error("Gemini AI Error details:", {
-      message: err.message,
-      stack: err.stack,
-      name: err.name
+  if (!key) {
+    console.log("❌ OpenRouter key missing");
+    throw new Error("Missing OpenRouter key");
+  }
+
+  // 🔥 Multiple models fallback (important)
+  const models = [
+    "openai/gpt-3.5-turbo",
+    "mistralai/mistral-7b-instruct",
+    "google/gemini-flash-1.5"
+  ];
+
+  let lastError = null;
+
+  for (const model of models) {
+    try {
+      console.log("Trying model:", model);
+
+      const res = await fetchWithTimeout(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${key.trim()}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": "http://localhost:3000", // ⚠️ IMPORTANT (skillsync.com hata)
+            "X-Title": "SkillSync",
+          },
+          body: JSON.stringify({
+            model,
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: userMessage },
+            ],
+            temperature: 0.7,
+            max_tokens: 1000,
+          }),
+        },
+        8000
+      );
+
+      const data = await res.json();
+
+      if (res.ok && data.choices?.length > 0) {
+        console.log("✅ OpenRouter success with:", model);
+
+        return NextResponse.json({
+          success: true,
+          reply: data.choices[0].message.content,
+        });
+      } else {
+        console.log(`❌ Model failed (${model}):`, data);
+        lastError = data;
+      }
+
+    } catch (err) {
+      console.log(`❌ Error with model (${model}):`, err.message);
+      lastError = err;
+    }
+  }
+
+  console.log("❌ All OpenRouter models failed:", lastError);
+
+} catch (err) {
+  console.log("❌ OpenRouter error:", err.message);
+}
+
+   // =========================
+// 3️⃣ GEMINI (LAST - SAFE)
+// =========================
+try {
+  console.log("➡️ Trying Gemini...");
+
+  const apiKey = process.env.GEMINI_API_KEY;
+
+  if (!apiKey) {
+    console.log("❌ Gemini key missing");
+    throw new Error("Missing Gemini API key");
+  }
+
+  const genAI = new GoogleGenerativeAI(apiKey);
+
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash", 
+  });
+
+  // ⏱️ timeout wrapper (important)
+  const result = await Promise.race([
+    model.generateContent(systemPrompt),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Gemini timeout")), 8000)
+    ),
+  ]);
+
+  const response = await result.response;
+
+  const text = response?.text()?.trim();
+
+  if (!text) {
+    throw new Error("Empty Gemini response");
+  }
+
+  console.log("✅ Gemini success");
+
+  return NextResponse.json({
+    success: true,
+    reply: text,
+  });
+
+} catch (err) {
+  console.log("❌ Gemini failed:", err.message);
+}
+
+    // =========================
+    // FINAL FAIL SAFE
+    // =========================
+    return NextResponse.json({
+      success: false,
+      reply: "All AI services are busy. Try again in a moment.",
     });
-    return NextResponse.json(
-      { error: `AI assistant request failed: ${err.message}` },
-      { status: 500 }
-    );
+
+  } catch (error) {
+    console.error("Server Error:", error);
+
+    return NextResponse.json({
+      success: false,
+      reply: "Server error",
+    });
   }
 }
