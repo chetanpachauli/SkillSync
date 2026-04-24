@@ -6,7 +6,7 @@ const Contact = () => {
     <div className="min-h-screen flex flex-col items-center justify-center space-y-6">
       <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">Contact Us</h1>
       <p className="text-zinc-600 dark:text-zinc-300 text-center max-w-2xl">
-        Have questions or feedback? Reach out to us. We're here to help you succeed in your tech career.
+    We&apos;re here to help you succeed in your tech career.
       </p>
       <div className="space-y-4">
         <p>
