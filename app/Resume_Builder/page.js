@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import ProgressBar from "@/components/Progressbar";
 import ResumePreview from "@/components/ResumePreview";
-import MultiStepForm from "@/components/MultisectorForm";
+import MultiStepForm from "@/components/MultiSectorForm";
 import { Button } from "@/components/ui/button";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
