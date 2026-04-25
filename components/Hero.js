@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import ImageSlider from "../../components/ImageSlider";
+import ImageSlider from "./ImageSlider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import {

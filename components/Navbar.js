@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { ModeToggle } from "../../components/ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BookText, Menu, MenuIcon, UserCircle, X, XIcon } from "lucide-react";

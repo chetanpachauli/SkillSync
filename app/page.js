@@ -1,18 +1,17 @@
-
-import About from "./about/page";
-import Features from "./features/page";
-import Footer from "./footer/page";
-import Hero from "./hero/page";
-import Navbar from "./navbar/page";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Features from "../components/Features";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className="overflow-hidden "> 
-    <Navbar/>
-    <Hero/>
-    <About/>
-    <Features/>
-    <Footer/>
-    </div>
+    <main className="overflow-hidden">
+      <Navbar />
+      <Hero />
+      <About />
+      <Features />
+      <Footer />
+    </main>
   );
 }
