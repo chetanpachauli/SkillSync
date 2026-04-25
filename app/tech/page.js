@@ -8,7 +8,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { ModeToggle } from "../components/modeToggle";
+import { ModeToggle } from "../../components/ModeToggle";
 import Link from "next/link";
 import { HomeIcon } from "lucide-react";
 

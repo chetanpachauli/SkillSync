@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, HomeIcon, MoreVertical, SendHorizonal } from "lucide-react";
 import TextareaAutosize from "react-textarea-autosize";
-import { ModeToggle } from "../components/modeToggle";
+import { ModeToggle } from "../../components/ModeToggle";
 import Link from "next/link";
 
 export default function AIPrepPage() {

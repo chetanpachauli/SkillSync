@@ -69,6 +69,24 @@ export default function MultiStepForm({ step, setStep, formData, setFormData }) 
     3: "Add skills, tools and languages.",
     4: "Add your social links.",
   }), []);
+   
+useEffect(() => {
+    if (formData) {
+      const initializedData = { ...formData };
+      let hasChanged = false;
+      Object.keys(labels).forEach((key) => {
+        if (initializedData[key] === undefined || initializedData[key] === null) {
+          initializedData[key] = "";
+          hasChanged = true;
+        }
+      });
+      if (hasChanged) {
+        setFormData(initializedData);
+      }
+    }
+  }, [formData, setFormData]); 
+    
+
 
   useEffect(() => {
     localStorage.setItem("resume-data", JSON.stringify(formData));
@@ -196,7 +214,7 @@ export default function MultiStepForm({ step, setStep, formData, setFormData }) 
                     rows={4}
                     aria-label={labels[field]}
                     aria-required="true"
-                    value={formData[field]}
+                    value={formData[field] || ""}
                     onChange={handleChange}
                     className="w-full pl-10 p-3 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -207,7 +225,7 @@ export default function MultiStepForm({ step, setStep, formData, setFormData }) 
                     type="text"
                     aria-label={labels[field]}
                     aria-required="true"
-                    value={formData[field]}
+                    value={formData[field] || ""}
                     onChange={handleChange}
                     className="w-full pl-10 p-3 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />

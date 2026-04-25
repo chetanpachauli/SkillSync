@@ -5,7 +5,7 @@ import {
   Github, Instagram, HomeIcon
 } from "lucide-react";
 import Link from "next/link";
-import { ModeToggle } from "../components/modeToggle";
+import { ModeToggle } from "../../components/ModeToggle";
 
 const skills = [
   "HTML", "CSS", "JavaScript", "React", "Next.js", "Node.js",
