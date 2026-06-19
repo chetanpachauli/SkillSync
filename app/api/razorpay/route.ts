@@ -1,13 +1,25 @@
 import Razorpay from "razorpay";
 import { NextResponse } from "next/server";
 
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
-  key_secret: process.env.RAZORPAY_KEY_SECRET || "",
-});
+function getRazorpay() {
+  const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  if (!key_id || !key_secret) {
+    return null;
+  }
+  return new Razorpay({ key_id, key_secret });
+}
 
 export async function POST(req: Request) {
   try {
+    const razorpay = getRazorpay();
+    if (!razorpay) {
+      return NextResponse.json(
+        { error: "Razorpay is not configured. Set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET." },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
     const { amount } = body;
 
@@ -18,7 +30,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Razorpay expects amount in paise (smallest currency unit)
     const options = {
       amount: Math.round(Number(amount) * 100),
       currency: "INR",
