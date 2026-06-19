@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ZoomInIcon } from "lucide-react";
@@ -8,172 +9,163 @@ import Resume_Zoom from "./REsumeZoom";
 export default function ResumePreview({ data }) {
   const [isZoomed, setIsZoomed] = useState(false);
 
+  if (!data) return null;
+
   return (
     <>
-    <div
-  style={{ borderColor: "#212d59" }}
-  className="md:w-[360px] md:h-[500px] h-full w-full overflow-hidden mx-auto bg-white text-black border-2 border-solid font-sans relative shadow-2xl rounded-md scale-[0.9]"
->
-
-        {/* Top Strip */}
-        <div className="flex flex-col items-center w-full">
-          <div className="w-2/3 border-[20px]" style={{ borderColor: "#212d59" }}></div>
+      <div className="w-full aspect-[1/1.414] min-h-[800px] md:min-h-[1020px] mx-auto bg-white text-black p-8 font-serif shadow-2xl relative border border-zinc-200 text-left">
+        
+        {/* Header */}
+        <div className="flex justify-between items-start mb-6">
+          <div className="flex-1 text-center">
+            <h1 className="text-3xl font-extrabold uppercase tracking-wider text-zinc-900 mb-1">
+              {data.name || "YOUR NAME"}
+            </h1>
+            
+            {/* Contact details */}
+            <div className="flex flex-wrap justify-center items-center gap-2 text-xs text-zinc-600 mt-1">
+              {data.email && <span>{data.email}</span>}
+              {data.email && (data.phone || data.address) && <span className="text-zinc-400">•</span>}
+              {data.phone && <span>{data.phone}</span>}
+              {data.phone && data.address && <span className="text-zinc-400">•</span>}
+              {data.address && <span>{data.address}</span>}
+            </div>
+            
+            {/* Socials / Professional links */}
+            {(data.linkedin || data.github || data.instagram) && (
+              <div className="flex flex-wrap justify-center items-center gap-2 text-xs text-blue-800 mt-1">
+                {data.linkedin && (
+                  <a href={data.linkedin.startsWith("http") ? data.linkedin : `https://${data.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    {data.linkedin.replace(/https?:\/\/(www\.)?/, "")}
+                  </a>
+                )}
+                {data.linkedin && data.github && <span className="text-zinc-400">•</span>}
+                {data.github && (
+                  <a href={data.github.startsWith("http") ? data.github : `https://${data.github}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    {data.github.replace(/https?:\/\/(www\.)?/, "")}
+                  </a>
+                )}
+                {data.github && data.instagram && <span className="text-zinc-400">•</span>}
+                {data.instagram && (
+                  <a href={data.instagram.startsWith("http") ? data.instagram : `https://${data.instagram}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    {data.instagram.replace(/https?:\/\/(www\.)?/, "")}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+          
+          {/* Executive photo if present */}
+          {data.photo && (
+            <div className="w-24 h-28 relative border border-zinc-200 ml-4 rounded shadow-sm overflow-hidden shrink-0">
+              <Image src={data.photo} alt="Profile Headshot" fill className="object-cover" />
+            </div>
+          )}
         </div>
 
-        {/* Resume Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-2">
-          {/* LEFT SIDE */}
-          <div className="col-span-2 space-y-6">
-            {/* Name */}
-            <h1 className="md:text-base font-bold uppercase text-[#212d59] border-b border-black pb-1">
-              {data.name}
-            </h1>
+        {/* Summary */}
+        {data.summary && (
+          <section className="mb-5">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-800 pb-0.5 mb-2">
+              Professional Summary
+            </h2>
+            <p className="text-xs text-zinc-700 leading-relaxed text-justify">
+              {data.summary}
+            </p>
+          </section>
+        )}
 
-            {/* Summary */}
-            <section>
-              <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                Summary
-              </h2>
-              <p className="text-xs text-gray-800 dark:text-gray-300 leading-relaxed">
-                {data.summary}
-              </p>
-            </section>
+        {/* Experience */}
+        {(data.company || data.experience) && (
+          <section className="mb-5">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-800 pb-0.5 mb-2">
+              Work Experience
+            </h2>
+            <div className="mb-2">
+              <div className="flex justify-between items-baseline text-xs">
+                <span className="font-bold text-zinc-900">{data.company || "Company Name"}</span>
+                <span className="text-zinc-600 font-semibold">{data.duration || "Dates"}</span>
+              </div>
+              <div className="flex justify-between items-baseline text-xs italic text-zinc-700 mb-1">
+                <span>{data.position || "Position / Title"}</span>
+              </div>
+              {data.experience && (
+                <ul className="list-disc list-inside text-xs text-zinc-700 space-y-1 pl-1">
+                  {data.experience.split("\n").map((line, idx) => {
+                    const trimmed = line.trim();
+                    if (!trimmed) return null;
+                    return (
+                      <li key={idx} className="leading-relaxed list-outside ml-4 pl-0.5">
+                        {trimmed.replace(/^[•\-\*]\s*/, "")}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          </section>
+        )}
 
-            {/* Experience */}
-            <section>
-              <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                Experience
-              </h2>
-              {data.company && <p className="text-xs font-semibold">{data.company}</p>}
-              {(data.position || data.duration) && (
-                <p className="text-xs italic text-gray-700">
-                  {data.position}
-                  {data.position && data.duration ? " | " : ""}
-                  {data.duration}
+        {/* Education */}
+        {(data.school || data.education) && (
+          <section className="mb-5">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-800 pb-0.5 mb-2">
+              Education
+            </h2>
+            <div className="mb-1">
+              <div className="flex justify-between items-baseline text-xs">
+                <span className="font-bold text-zinc-900">{data.school || "School / University"}</span>
+                <span className="text-zinc-600 font-semibold">{data.year || "Year"}</span>
+              </div>
+              <div className="text-xs italic text-zinc-700">
+                {data.degree || "Degree / Program"}
+              </div>
+              {data.education && (
+                <p className="text-xs text-zinc-650 mt-1 leading-relaxed text-justify">
+                  {data.education}
                 </p>
               )}
-              <p className="text-xs text-gray-800 whitespace-pre-line mt-1">
-                {data.experience}
-              </p>
-            </section>
+            </div>
+          </section>
+        )}
 
-            {/* Education */}
-            <section>
-              <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                Education & Training
-              </h2>
-              <p className="text-xs font-semibold italic">{data.degree}</p>
-              <p className="text-xs text-gray-700">
-                {data.school} – {data.year}
-              </p>
-              <p className="text-xs text-gray-700 mt-1">{data.education}</p>
-            </section>
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col gap-4">
-            {/* Photo */}
-            {data.photo ? (
-              <div className="w-full h-48 relative border shadow-md rounded-md overflow-hidden">
-                <Image src={data.photo} alt="Profile Photo" fill className="object-cover" />
-              </div>
-            ) : (
-              <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-600 rounded-md border">
-                No Image
-              </div>
-            )}
-
-            {/* Contact */}
-            <section>
-              <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                Contact
-              </h2>
-              <p className="text-xs"><strong>Address:</strong> {data.address}</p>
-              <p className="text-xs"><strong>Phone:</strong> {data.phone}</p>
-              <p className="text-xs"><strong>Email:</strong> {data.email}</p>
-            </section>
-
-            {/* Socials */}
-            {(data.linkedin || data.github || data.instagram) && (
-              <section>
-                <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                  Socials
-                </h2>
-                <ul className="text-xs space-y-1">
-                  {data.linkedin && (
-                    <li>
-                      <strong>LinkedIn:</strong>{" "}
-                      <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-                        {data.linkedin}
-                      </a>
-                    </li>
-                  )}
-                  {data.github && (
-                    <li>
-                      <strong>GitHub:</strong>{" "}
-                      <a href={data.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-                        {data.github}
-                      </a>
-                    </li>
-                  )}
-                  {data.instagram && (
-                    <li>
-                      <strong>Instagram:</strong>{" "}
-                      <a href={data.instagram} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-                        {data.instagram}
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </section>
-            )}
-
-            {/* Skills, Tools, Languages */}
-            <section>
-              <h2 className="text-xs font-semibold uppercase border-b border-black pb-1 mb-1 text-[#212d59]">
-                Skills
-              </h2>
-              <ul className="text-xs list-disc list-inside space-y-1">
-                {data.skills?.split("\n").map((skill, i) => (
-                  <li key={i}>{skill}</li>
-                ))}
-              </ul>
-
+        {/* Skills & Tools */}
+        {(data.skills || data.tools || data.languages) && (
+          <section className="mb-5">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-800 pb-0.5 mb-2">
+              Skills, Tools & Languages
+            </h2>
+            <div className="space-y-1.5 text-xs text-zinc-700">
+              {data.skills && (
+                <div>
+                  <span className="font-bold text-zinc-900">Technical Skills: </span>
+                  <span>{data.skills.split("\n").filter(s => s.trim()).join(", ")}</span>
+                </div>
+              )}
               {data.tools && (
-                <>
-                  <h2 className="text-xs font-semibold uppercase border-b border-black pt-4 pb-1 mb-1 text-[#212d59]">
-                    Tools
-                  </h2>
-                  <ul className="text-xs list-disc list-inside space-y-1">
-                    {data.tools.split("\n").map((tool, i) => (
-                      <li key={i}>{tool}</li>
-                    ))}
-                  </ul>
-                </>
+                <div>
+                  <span className="font-bold text-zinc-900">Developer Tools: </span>
+                  <span>{data.tools.split("\n").filter(t => t.trim()).join(", ")}</span>
+                </div>
               )}
-
               {data.languages && (
-                <>
-                  <h2 className="text-xs font-semibold uppercase border-b border-black pt-4 pb-1 mb-1 text-[#212d59]">
-                    Languages
-                  </h2>
-                  <ul className="text-xs list-disc list-inside space-y-1">
-                    {data.languages.split("\n").map((lang, i) => (
-                      <li key={i}>{lang}</li>
-                    ))}
-                  </ul>
-                </>
+                <div>
+                  <span className="font-bold text-zinc-900">Languages: </span>
+                  <span>{data.languages.split("\n").filter(l => l.trim()).join(", ")}</span>
+                </div>
               )}
-            </section>
-          </div>
-        </div>
+            </div>
+          </section>
+        )}
 
         {/* Zoom Button */}
         <Button
           onClick={() => setIsZoomed(true)}
-          className="rounded-full absolute bottom-3 left-3 p-2"
+          className="rounded-full absolute bottom-4 left-4 p-2 bg-zinc-900 hover:bg-zinc-800 text-white border-none shadow-md"
+          variant="default"
+          size="icon"
         >
-          <ZoomInIcon width={40} />
+          <ZoomInIcon size={18} />
         </Button>
       </div>
 

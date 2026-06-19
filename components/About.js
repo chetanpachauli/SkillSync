@@ -7,6 +7,10 @@ import {
   Sparkles,
   Target,
   Eye,
+  Bot,
+  Compass,
+  ScrollText,
+  MessageCircleCode,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -55,12 +59,12 @@ const About = () => {
       </div>
 
       {/* Key Features */}
-      <div className="space-y-8 max-w-4xl mx-auto">
+      <div className="space-y-8 max-w-5xl mx-auto">
         <h3 className="text-3xl font-bold text-zinc-900 dark:text-white">
           What Makes Us Different
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
           <div className="flex items-start space-x-4">
             <Sparkles className="text-blue-600 mt-1 flex-shrink-0" size={24} />
             <div>
@@ -82,21 +86,41 @@ const About = () => {
           </div>
 
           <div className="flex items-start space-x-4">
-            <SearchCheck className="text-purple-600 mt-1 flex-shrink-0" size={24} />
+            <ScrollText className="text-orange-600 mt-1 flex-shrink-0" size={24} />
             <div>
-              <h4 className="font-semibold">Skill Assessment</h4>
+              <h4 className="font-semibold">Resume Builder</h4>
               <p className="text-zinc-600 dark:text-zinc-300">
-                Identify your strengths and areas for improvement with comprehensive skill analysis
+                Step-by-step builder with live preview and PDF download for a polished professional resume
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-4">
-            <BrainCircuit className="text-orange-600 mt-1 flex-shrink-0" size={24} />
+            <Bot className="text-purple-600 mt-1 flex-shrink-0" size={24} />
             <div>
-              <h4 className="font-semibold">24/7 Availability</h4>
+              <h4 className="font-semibold">AI Chat Assistant</h4>
               <p className="text-zinc-600 dark:text-zinc-300">
-                Practice and learn anytime, anywhere with our always-available AI assistant
+                Conversational AI that answers interview questions and provides instant guidance on demand
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start space-x-4">
+            <Compass className="text-blue-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">Career Roadmap</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                AI-generated learning paths tailored to your target role, skill level, and career goals
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start space-x-4">
+            <SearchCheck className="text-teal-600 mt-1 flex-shrink-0" size={24} />
+            <div>
+              <h4 className="font-semibold">Tech Q&A Quiz</h4>
+              <p className="text-zinc-600 dark:text-zinc-300">
+                Generate MCQs and True/False quizzes on any tech topic to test your knowledge
               </p>
             </div>
           </div>
