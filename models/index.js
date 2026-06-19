@@ -1,7 +1,9 @@
 import User from './User';
+import Interview from './Interview';
 
-export { User };
+export { User, Interview };
 
 export default {
-  User
+  User,
+  Interview
 };

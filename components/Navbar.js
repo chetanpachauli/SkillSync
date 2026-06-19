@@ -38,6 +38,18 @@ const Navbar = () => {
             Developer
           </Link>
           <Link
+            href="/resume-analyzer"
+            className="hover:text-blue-600 hover:underline transition duration-200"
+          >
+            Resume Analyzer
+          </Link>
+          <Link
+            href="/interview"
+            className="hover:text-blue-600 hover:underline transition duration-200"
+          >
+            Interview Prep
+          </Link>
+          <Link
             href="#features"
             className="hover:text-blue-600 hover:underline transition duration-200"
           >
@@ -89,6 +101,18 @@ const Navbar = () => {
             className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
           >
             Developer
+          </Link>
+          <Link
+            href="/resume-analyzer"
+            className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
+          >
+            Resume Analyzer
+          </Link>
+          <Link
+            href="/interview"
+            className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
+          >
+            Interview Prep
           </Link>
           <Link
             href="#features"
