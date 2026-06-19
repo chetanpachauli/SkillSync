@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles, FileText, MessageCircleCode, ArrowRight, MoveRight, ArrowLeft } from "lucide-react";
+import { Sparkles, FileText, ScrollText, Bot, Compass, MessageCircleCode, MoveRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -18,12 +18,51 @@ const Intro = () => {
       </div>
 
       {/* How It Works */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto pt-10 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto pt-10 text-left">
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
           <Sparkles className="text-green-700 dark:text-green-400" size={28} />
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Interview Prep</h3>
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Interview Simulator</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
-            Practice mock interviews with real-time, personalized AI feedback and improve your confidence.
+            Real-time speech transcription, interactive coding challenges, and deep AI evaluation reports.
+          </p>
+          <Link href="/interview">
+          <Button className="w-full">
+            <MoveRight width={26}/>
+          </Button>
+          </Link>
+        </div>
+
+        <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
+          <FileText className="text-green-700 dark:text-green-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Resume Analyzer</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            Upload your PDF resume for an instant AI-driven ATS audit, missing keyword detection, and role suggestions.
+          </p>
+          <Link href="/resume-analyzer">
+          <Button className="w-full">
+            <MoveRight width={26}/>
+          </Button>
+          </Link>
+        </div>
+
+        <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
+          <ScrollText className="text-green-700 dark:text-green-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Resume Builder</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            Upload your resume and let our AI identify strengths, weaknesses, and optimization tips.
+          </p>
+          <Link href="/Resume_Builder">
+          <Button className="w-full">
+            <MoveRight width={26}/>
+          </Button>
+          </Link>
+        </div>
+
+        <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
+          <Bot className="text-green-700 dark:text-green-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Chat Assistant</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            Practice with a conversational AI that answers your interview questions and provides instant guidance.
           </p>
           <Link href="/Aiprep">
           <Button className="w-full">
@@ -33,12 +72,12 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <FileText className="text-green-700 dark:text-green-400" size={28} />
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Resume builder</h3>
+          <Compass className="text-green-700 dark:text-green-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Career Roadmap</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
-            Upload your resume and let our AI identify strengths, weaknesses, and optimization tips.
+            Follow a structured AI-generated learning path tailored to your target role and skill level.
           </p>
-          <Link href="/Resume_Builder">
+          <Link href="/roadmap">
           <Button className="w-full">
             <MoveRight width={26}/>
           </Button>

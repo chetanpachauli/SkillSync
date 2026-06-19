@@ -64,9 +64,9 @@ const About = () => {
           <div className="flex items-start space-x-4">
             <Sparkles className="text-blue-600 mt-1 flex-shrink-0" size={24} />
             <div>
-              <h4 className="font-semibold">Smart Interview Prep</h4>
+              <h4 className="font-semibold">AI Interview Simulator</h4>
               <p className="text-zinc-600 dark:text-zinc-300">
-                Practice with AI that adapts to your skill level and provides real-time feedback
+                Real-time voice interactions, dynamic coding questions, and automated grading for a full mock interview experience
               </p>
             </div>
           </div>
@@ -74,9 +74,9 @@ const About = () => {
           <div className="flex items-start space-x-4">
             <FileText className="text-green-600 mt-1 flex-shrink-0" size={24} />
             <div>
-              <h4 className="font-semibold">Resume Optimization</h4>
+              <h4 className="font-semibold">AI Resume Analyzer</h4>
               <p className="text-zinc-600 dark:text-zinc-300">
-                Build and refine your resume with AI-powered suggestions and formatting
+                Upload your PDF resume and get an instant ATS score, missing keyword detection, and role-specific recommendations
               </p>
             </div>
           </div>
@@ -112,14 +112,14 @@ const About = () => {
           Join thousands of professionals who have accelerated their careers with SkillSync
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/Aiprep">
+          <Link href="/interview">
             <Button size="lg" className="w-full sm:w-auto">
               Start Practicing
             </Button>
           </Link>
-          <Link href="/Resume_Builder">
+          <Link href="/resume-analyzer">
             <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              Build Resume
+              Analyze Resume
             </Button>
           </Link>
         </div>

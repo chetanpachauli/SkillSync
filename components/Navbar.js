@@ -55,6 +55,18 @@ const Navbar = () => {
           >
             Features
           </Link>
+          <Link
+            href="#pricing"
+            className="hover:text-blue-600 hover:underline transition duration-200"
+          >
+            Pricing
+          </Link>
+          <Link
+            href="/roadmap"
+            className="hover:text-blue-600 hover:underline transition duration-200"
+          >
+            Roadmap
+          </Link>
          
                   {session?.user ? (
             <>
@@ -119,6 +131,18 @@ const Navbar = () => {
             className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
           >
             Features
+          </Link>
+          <Link
+            href="#pricing"
+            className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
+          >
+            Pricing
+          </Link>
+          <Link
+            href="/roadmap"
+            className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
+          >
+            Roadmap
           </Link>
          
           {session?.user && (

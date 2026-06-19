@@ -17,16 +17,16 @@ const Features = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto text-center">
         <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-md">
           <Sparkles size={32} className="text-green-700 dark:text-green-400" />
-          <h4 className="text-lg font-semibold">AI Interview Prep</h4>
+          <h4 className="text-lg font-semibold">AI Interview Simulator</h4>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
-            Practice real-world interview questions with smart feedback.
+            Dynamic voice and coding tracks with real-time AI grading and detailed reports.
           </p>
         </div>
         <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-md">
           <FileText size={32} className="text-green-700 dark:text-green-400" />
-          <h4 className="text-lg font-semibold">Resume Maker</h4>
+          <h4 className="text-lg font-semibold">AI Resume Analyzer</h4>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
-            Create your resume and get instant, actionable improvement tips.
+            Upload your PDF resume for an instant ATS score, keyword gaps, and improvement tips.
           </p>
         </div>
         <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-md">
