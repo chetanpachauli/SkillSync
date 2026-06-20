@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectMongoDB } from "@/app/lib/mongodb";
+import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import Interview from "@/models/Interview";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -228,6 +228,7 @@ You must return a valid JSON object matching this schema. Do not wrap in markdow
 
     const newInterview = new (Interview as any)({
       userId,
+      email,
       role,
       experienceLevel,
       interviewType,

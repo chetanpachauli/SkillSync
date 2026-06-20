@@ -361,8 +361,7 @@ export default function InterviewSimulatorPage() {
         const results = (currentQuestion.testCases || []).map((tc) => {
           let testInput;
           try {
-            // Safely parse array / object parameters
-            testInput = eval(`[${tc.input}]`);
+            testInput = JSON.parse(`[${tc.input}]`);
           } catch {
             testInput = [tc.input];
           }
@@ -490,20 +489,7 @@ export default function InterviewSimulatorPage() {
       }));
     } catch (err) {
       console.warn("Evaluation failed:", err);
-      // Construct fallback mock response
-      setEvaluations(prev => ({
-        ...prev,
-        [currentQuestion.id]: {
-          technicalScore: 50,
-          communicationScore: 50,
-          confidenceScore: 50,
-          problemSolvingScore: 50,
-          strengths: ["Submitted answer."],
-          weaknesses: ["Unable to contact evaluation engine."],
-          improvements: ["Please retry connecting later."],
-          idealAnswer: "Conceptual response."
-        }
-      }));
+      setError("AI evaluation service is currently unavailable. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -649,13 +635,13 @@ export default function InterviewSimulatorPage() {
                 {/* 1. Category selection */}
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Role Category</label>
-                  <select 
+                    <select 
                     value={selectedCategory} 
                     onChange={(e) => handleCategoryChange(e.target.value)}
-                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-850 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
                   >
                     {Object.keys(CATEGORIZED_ROLES).map((cat) => (
-                      <option key={cat} value={cat}>{cat}</option>
+                      <option key={cat} value={cat} className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">{cat}</option>
                     ))}
                   </select>
                 </div>
@@ -663,13 +649,13 @@ export default function InterviewSimulatorPage() {
                 {/* 2. Specific role */}
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Specific Role</label>
-                  <select 
+                    <select 
                     value={selectedRole} 
                     onChange={(e) => setSelectedRole(e.target.value)}
-                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-850 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
                   >
                     {CATEGORIZED_ROLES[selectedCategory as keyof typeof CATEGORIZED_ROLES]?.map((r) => (
-                      <option key={r} value={r}>{r}</option>
+                      <option key={r} value={r} className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">{r}</option>
                     ))}
                   </select>
                 </div>
@@ -677,13 +663,13 @@ export default function InterviewSimulatorPage() {
                 {/* 3. Level */}
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Experience Level</label>
-                  <select 
+                    <select 
                     value={selectedLevel} 
                     onChange={(e) => setSelectedLevel(e.target.value)}
-                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-850 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
                   >
                     {EXPERIENCE_LEVELS.map((lvl) => (
-                      <option key={lvl} value={lvl}>{lvl}</option>
+                      <option key={lvl} value={lvl} className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">{lvl}</option>
                     ))}
                   </select>
                 </div>
@@ -691,13 +677,13 @@ export default function InterviewSimulatorPage() {
                 {/* 4. Interview type */}
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Interview Type</label>
-                  <select 
+                    <select 
                     value={selectedType} 
                     onChange={(e) => setSelectedType(e.target.value)}
-                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-850 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    className="w-full p-3 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 rounded-xl font-medium focus:ring-2 focus:ring-green-500 focus:outline-none"
                   >
                     {INTERVIEW_TYPES.map((t) => (
-                      <option key={t} value={t}>{t}</option>
+                      <option key={t} value={t} className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">{t}</option>
                     ))}
                   </select>
                 </div>
@@ -836,15 +822,15 @@ export default function InterviewSimulatorPage() {
                         Interactive Sandbox Editor
                       </h3>
                       
-                      <select
+                       <select
                         value={selectedLang}
                         onChange={(e) => setSelectedLang(e.target.value)}
-                        className="p-1.5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs font-semibold"
+                        className="p-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs font-semibold"
                       >
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python (Simulated)</option>
-                        <option value="java">Java (Simulated)</option>
-                        <option value="cpp">C++ (Simulated)</option>
+                        <option value="javascript" className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">JavaScript</option>
+                        <option value="python" className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">Python (Simulated)</option>
+                        <option value="java" className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">Java (Simulated)</option>
+                        <option value="cpp" className="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">C++ (Simulated)</option>
                       </select>
                     </div>
 

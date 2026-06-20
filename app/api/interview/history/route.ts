@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectMongoDB } from "@/app/lib/mongodb";
+import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import Interview from "@/models/Interview";
 
@@ -24,7 +24,12 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const history = await (Interview as any).find({ userId: user._id })
+    const history = await (Interview as any).find({
+      $or: [
+        { userId: user._id },
+        { email }
+      ]
+    })
       .sort({ createdAt: -1 })
       .exec();
 
