@@ -2,8 +2,8 @@ import Razorpay from "razorpay";
 import { NextResponse } from "next/server";
 
 function getRazorpay() {
-  const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.trim();
+  const key_secret = process.env.RAZORPAY_KEY_SECRET?.trim();
   if (!key_id || !key_secret) {
     return null;
   }
@@ -48,8 +48,9 @@ export async function POST(req: Request) {
     );
   } catch (error: any) {
     console.error("Error creating Razorpay order:", error);
+    const errorMessage = error?.error?.description || error?.message || "Internal server error";
     return NextResponse.json(
-      { error: error?.message || "Internal server error" },
+      { error: errorMessage },
       { status: 500 }
     );
   }

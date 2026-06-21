@@ -30,7 +30,7 @@ const Footer = () => {
           </h4>
           <ul className="space-y-1 text-sm">
             <li>
-              <Link href="/about" className="hover:underline">
+              <Link href="/#about" className="hover:underline">
                 About
               </Link>
             </li>

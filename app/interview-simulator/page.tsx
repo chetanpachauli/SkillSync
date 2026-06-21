@@ -82,6 +82,8 @@ interface Question {
   difficulty?: string;
   boilerplate?: string;
   testCases?: Array<{ input: string; output: string }>;
+  idealAnswer?: string;
+  explanation?: string;
 }
 
 interface QuestionEvaluation {
@@ -123,6 +125,11 @@ export default function InterviewSimulatorPage() {
   const [codeAnswers, setCodeAnswers] = useState<Record<number, string>>({});
   const [codeLanguages, setCodeLanguages] = useState<Record<number, string>>({});
   const [evaluations, setEvaluations] = useState<Record<number, QuestionEvaluation>>({});
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
+
+  useEffect(() => {
+    setShowAnswer(false);
+  }, [currentIdx]);
 
   // Voice Interaction states
   const [isRecording, setIsRecording] = useState<boolean>(false);
@@ -283,11 +290,15 @@ export default function InterviewSimulatorPage() {
         throw new Error(json.error || "Failed to generate interview questions.");
       }
 
-      setQuestions(json.questions);
+      const questionsArray = Array.isArray(json.questions)
+        ? json.questions
+        : (json.questions && Array.isArray(json.questions.questions) ? json.questions.questions : []);
+
+      setQuestions(questionsArray);
       // Initialize code boilerplates if coding interview
       const initialCode: Record<number, string> = {};
       const initialLang: Record<number, string> = {};
-      json.questions.forEach((q: Question) => {
+      questionsArray.forEach((q: Question) => {
         if (q.type === "coding") {
           initialCode[q.id] = q.boilerplate || "// Write your code here";
           initialLang[q.id] = "javascript";
@@ -781,6 +792,42 @@ export default function InterviewSimulatorPage() {
                     <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-350 whitespace-pre-wrap">
                       {questions[currentIdx]?.questionText}
                     </p>
+
+                    {/* See Answer Section */}
+                    <div className="pt-4 border-t border-zinc-150 dark:border-zinc-800 mt-4">
+                      <button
+                        onClick={() => setShowAnswer(!showAnswer)}
+                        className="text-xs font-bold text-green-700 dark:text-green-400 hover:underline flex items-center gap-1.5 focus:outline-none"
+                      >
+                        {showAnswer ? "Hide Expected Answer" : "See Expected Answer"}
+                      </button>
+
+                      {showAnswer && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          className="mt-3 p-4 bg-zinc-50 dark:bg-zinc-950/30 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-3"
+                        >
+                          {questions[currentIdx]?.idealAnswer && (
+                            <div>
+                              <h4 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Ideal Code Solution:</h4>
+                              <pre className="mt-1.5 p-3 bg-zinc-900 dark:bg-black text-emerald-400 font-mono text-xs rounded-xl overflow-x-auto whitespace-pre-wrap">
+                                {questions[currentIdx]?.idealAnswer}
+                              </pre>
+                            </div>
+                          )}
+                          {questions[currentIdx]?.explanation && (
+                            <div className="text-xs text-zinc-650 dark:text-zinc-400">
+                              <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Explanation & Approach:</h4>
+                              <p className="mt-1 leading-relaxed">{questions[currentIdx]?.explanation}</p>
+                            </div>
+                          )}
+                          {!questions[currentIdx]?.idealAnswer && !questions[currentIdx]?.explanation && (
+                            <p className="text-xs text-zinc-400 italic">No ideal answer details provided for this question.</p>
+                          )}
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Test Cases Panel */}
@@ -899,6 +946,40 @@ export default function InterviewSimulatorPage() {
                   <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 leading-snug">
                     {questions[currentIdx]?.questionText}
                   </h3>
+
+                  {/* See Answer Section */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => setShowAnswer(!showAnswer)}
+                      className="text-xs font-bold text-green-700 dark:text-green-400 hover:underline flex items-center gap-1.5 focus:outline-none"
+                    >
+                      {showAnswer ? "Hide Expected Answer" : "See Expected Answer"}
+                    </button>
+
+                    {showAnswer && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="mt-3 p-4 bg-zinc-50 dark:bg-zinc-950/30 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-3 text-left"
+                      >
+                        {questions[currentIdx]?.idealAnswer && (
+                          <div className="text-xs text-zinc-700 dark:text-zinc-350">
+                            <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Expected Answer:</h4>
+                            <p className="mt-1 leading-relaxed">{questions[currentIdx]?.idealAnswer}</p>
+                          </div>
+                        )}
+                        {questions[currentIdx]?.explanation && (
+                          <div className="text-xs text-zinc-650 dark:text-zinc-400">
+                            <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Reasoning / Focus Areas:</h4>
+                            <p className="mt-1 leading-relaxed">{questions[currentIdx]?.explanation}</p>
+                          </div>
+                        )}
+                        {!questions[currentIdx]?.idealAnswer && !questions[currentIdx]?.explanation && (
+                          <p className="text-xs text-zinc-400 italic">No ideal answer details provided for this question.</p>
+                        )}
+                      </motion.div>
+                    )}
+                  </div>
 
                   {/* Transcript Display */}
                   <div className="space-y-2">

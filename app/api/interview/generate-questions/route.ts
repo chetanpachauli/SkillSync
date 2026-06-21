@@ -56,7 +56,9 @@ Depending on the Interview Type:
        "testCases": [
          { "input": "[2, 7, 11, 15], 9", "output": "[0, 1]" },
          { "input": "[3, 2, 4], 6", "output": "[1, 2]" }
-       ]
+       ],
+       "idealAnswer": "Complete optimal JavaScript code solution.",
+       "explanation": "Brief explanation of the algorithm complexity (time and space) and approach."
      },
      ...
    ]
@@ -67,7 +69,9 @@ Depending on the Interview Type:
      {
        "id": 1,
        "type": "text",
-       "questionText": "Specific interview question based on the role, experience level, and interview type."
+       "questionText": "Specific interview question based on the role, experience level, and interview type.",
+       "idealAnswer": "Short example of the correct or ideal response expected from the candidate.",
+       "explanation": "Brief explanation of the key concepts and criteria that make this answer strong."
      },
      ...
    ]
@@ -234,9 +238,14 @@ Make the questions highly relevant to the role. For example, if the role is a "R
       );
     }
 
+    const parsed = JSON.parse(finalJsonResponseStr);
+    const questionsArray = Array.isArray(parsed)
+      ? parsed
+      : (parsed && Array.isArray(parsed.questions) ? parsed.questions : (parsed && Array.isArray(parsed.data) ? parsed.data : []));
+
     return NextResponse.json({
       success: true,
-      questions: JSON.parse(finalJsonResponseStr),
+      questions: questionsArray,
     });
 
   } catch (error: any) {
