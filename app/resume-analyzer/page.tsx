@@ -261,10 +261,10 @@ export default function ResumeAnalyzerPage() {
 
         {/* Form & Upload View */}
         {!result && !analyzing && !uploading && (
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="w-full max-w-xl mx-auto px-4 space-y-6">
             <div 
               {...getRootProps()} 
-              className={`border-2 border-dashed rounded-3xl p-10 md:p-14 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center space-y-4 shadow-sm bg-white dark:bg-zinc-900/40 hover:bg-zinc-50 dark:hover:bg-zinc-900/80 ${
+              className={`border-2 border-dashed rounded-3xl p-6 sm:p-10 md:p-14 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center space-y-4 shadow-sm bg-white dark:bg-zinc-900/40 hover:bg-zinc-50 dark:hover:bg-zinc-900/80 ${
                 isDragActive 
                   ? "border-green-600 bg-green-500/5 scale-[0.99]" 
                   : "border-zinc-300 dark:border-zinc-800 hover:border-green-500/60"
@@ -292,14 +292,14 @@ export default function ResumeAnalyzerPage() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl"
+                className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl gap-4"
               >
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-red-500/10 text-red-600">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="p-2.5 rounded-xl bg-red-500/10 text-red-600 shrink-0">
                     <FileText className="w-6 h-6" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 truncate max-w-xs md:max-w-md">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 truncate">
                       {file.name}
                     </p>
                     <p className="text-xs text-zinc-400">
@@ -307,7 +307,7 @@ export default function ResumeAnalyzerPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-end w-full sm:w-auto gap-3">
                   <button 
                     onClick={() => setFile(null)} 
                     className="text-xs font-semibold text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 px-3 py-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
@@ -316,7 +316,7 @@ export default function ResumeAnalyzerPage() {
                   </button>
                   <button 
                     onClick={handleAnalyze} 
-                    className="bg-green-700 hover:bg-green-600 active:scale-95 text-white text-xs md:text-sm font-bold px-5 py-2 rounded-xl transition duration-150 flex items-center gap-2 shadow-sm"
+                    className="bg-green-700 hover:bg-green-600 active:scale-95 text-white text-xs md:text-sm font-bold px-5 py-2 rounded-xl transition duration-150 flex items-center gap-2 shadow-sm shrink-0"
                   >
                     <Sparkles className="w-4 h-4" />
                     Analyze Resume

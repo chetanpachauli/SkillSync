@@ -1316,7 +1316,7 @@ export default function RoadmapPage() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.08 }}
-                  className={`flex items-start gap-6 p-5 rounded-2xl cursor-pointer border transition-all ${
+                  className={`flex items-start gap-4 md:gap-6 p-4 md:p-5 pl-5 sm:pl-5 w-full rounded-2xl cursor-pointer border transition-all ${
                     isSelected
                       ? "bg-zinc-900 border-blue-500 shadow-lg shadow-blue-500/5"
                       : "bg-zinc-900/40 border-zinc-900 hover:bg-zinc-900/80 hover:border-zinc-800"
@@ -1343,12 +1343,12 @@ export default function RoadmapPage() {
 
                   {/* Title & info */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className={`text-base md:text-lg font-bold truncate ${isLocked ? "text-zinc-500" : "text-white"}`}>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 items-start sm:items-baseline">
+                      <h3 className={`text-base md:text-lg font-bold truncate ${isLocked ? "text-zinc-500" : "text-white"} w-full sm:w-auto`}>
                         {node.title}
                       </h3>
                       <span
-                        className={`text-2xs md:text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 border ${
+                        className={`text-2xs md:text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 border w-fit ${
                           isCompleted
                             ? "bg-emerald-950/40 border-emerald-900/50 text-emerald-400"
                             : isActive
