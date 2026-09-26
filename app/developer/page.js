@@ -8,8 +8,9 @@ import Link from "next/link";
 import { ModeToggle } from "../../components/ModeToggle";
 
 const skills = [
-  "HTML", "CSS", "JavaScript", "React", "Next.js", "Node.js",
-  "Tailwind CSS", "MongoDB", "Express.js", "Git", "three js ", "REST APIs"
+  "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
+  "Express.js", "Python", "NumPy", "Pandas", "SQL", "MongoDB",
+  "AWS", "Docker", "Jenkins", "Tailwind CSS", "Git", "three js", "REST APIs"
 ];
 
 const socialLinks = [
@@ -76,10 +77,10 @@ const Developer = () => {
               <Code2 className="text-primary w-6 h-6 animate-pulse" />
               My Tech Stack
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 ">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {skills.map((skill, i) => (
                 <div key={i} className="flex items-center gap-2 px-4 py-2 hover:bg-primary hover:text-background rounded-xl bg-muted text-sm font-medium shadow-sm hover:scale-[1.02] transition-transform">
-                  <BadgeCheck className="text-green-500 w-4 h-4 " />
+                  <BadgeCheck className="text-green-500 w-4 h-4" />
                   {skill}
                 </div>
               ))}

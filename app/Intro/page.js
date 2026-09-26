@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles, FileText, ScrollText, Bot, Compass, MessageCircleCode, MoveRight, ArrowLeft } from "lucide-react";
+import { Sparkles, FileText, ScrollText, Bot, Compass, MessageCircleCode, MoveRight, ArrowLeft, Send, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -10,7 +10,7 @@ const Intro = () => {
       {/* Welcome Text */}
       <div className="space-y-4 max-w-3xl">
         <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white">
-          Welcome to <span className="text-green-700 dark:text-green-400">SkillSync</span>
+          Welcome to <span className="text-blue-600 dark:text-blue-400">SkillSync</span>
         </h1>
         <p className="text-base md:text-lg text-zinc-600 dark:text-zinc-300">
           Let’s get you one step closer to landing your dream tech job. Our smart tools help you prepare confidently and grow professionally.
@@ -18,9 +18,21 @@ const Intro = () => {
       </div>
 
       {/* How It Works */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto pt-10 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto pt-10 text-left">
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <Sparkles className="text-green-700 dark:text-green-400" size={28} />
+          <Send className="text-blue-600 dark:text-blue-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Job Auto-Applier</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            Automate your job search on LinkedIn & Indeed with Playwright & Gemini AI screening question solver.
+          </p>
+          <Link href="/auto-apply">
+            <Button className="w-full">
+              <MoveRight width={26}/>
+            </Button>
+          </Link>
+        </div>
+        <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
+          <Sparkles className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Interview Simulator</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Real-time speech transcription, interactive coding challenges, and deep AI evaluation reports.
@@ -33,7 +45,7 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <FileText className="text-green-700 dark:text-green-400" size={28} />
+          <FileText className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Resume Analyzer</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Upload your PDF resume for an instant AI-driven ATS audit, missing keyword detection, and role suggestions.
@@ -46,7 +58,7 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <ScrollText className="text-green-700 dark:text-green-400" size={28} />
+          <ScrollText className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Resume Builder</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Upload your resume and let our AI identify strengths, weaknesses, and optimization tips.
@@ -59,7 +71,7 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <Bot className="text-green-700 dark:text-green-400" size={28} />
+          <Bot className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">AI Chat Assistant</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Practice with a conversational AI that answers your interview questions and provides instant guidance.
@@ -72,7 +84,7 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <Compass className="text-green-700 dark:text-green-400" size={28} />
+          <Compass className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Career Roadmap</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Follow a structured AI-generated learning path tailored to your target role and skill level.
@@ -85,7 +97,7 @@ const Intro = () => {
         </div>
 
         <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
-          <MessageCircleCode className="text-green-700 dark:text-green-400 " size={28} />
+          <MessageCircleCode className="text-blue-600 dark:text-blue-400" size={28} />
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Tech Q&A Assistant</h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Ask DSA/System Design questions anytime — get concise answers and code breakdowns.
@@ -96,12 +108,25 @@ const Intro = () => {
           </Button>
           </Link>
         </div>
+
+        <div className="flex flex-col justify-between bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 space-y-4">
+          <Code2 className="text-blue-600 dark:text-blue-400" size={28} />
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Developer Showcase</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            Explore developer skills, tech stack badges, personal portfolio, and social profiles.
+          </p>
+          <Link href="/developer">
+          <Button className="w-full">
+            <MoveRight width={26}/>
+          </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Call To Action */}
       <div className="pt-10">
         <Link href="/">
-          <Button className="bg-green-800 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm flex items-center gap-2">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm flex items-center gap-2">
              <ArrowLeft size={16} />Home
           </Button>
         </Link>

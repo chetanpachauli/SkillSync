@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import { AuthProvider } from "../components/Provider"; 
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,17 @@ export default function RootLayout({ children }) {
   suppressHydrationWarning
   className={`bg-gradient-to-b from-white via-blue-50 to-white dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 ${geistSans.variable} ${geistMono.variable} antialiased`}
 >
+       <NextTopLoader
+         color="#2563eb"
+         initialPosition={0.08}
+         crawlSpeed={200}
+         height={3}
+         crawl={true}
+         showSpinner={false}
+         easing="ease"
+         speed={200}
+         shadow="0 0 10px #2563eb,0 0 5px #2563eb"
+       />
        <AuthProvider>
         <ThemeProvider
           attribute="class"

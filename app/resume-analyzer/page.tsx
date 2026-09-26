@@ -229,12 +229,12 @@ export default function ResumeAnalyzerPage() {
         
         {/* Header Section */}
         <div className="text-center space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-700 dark:text-green-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             AI-Powered Optimization
           </div>
           <h1 className="text-3xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
-            Resume <span className="text-green-700 dark:text-green-400">ATS Analyzer</span>
+            Resume <span className="text-blue-600 dark:text-blue-400">ATS Analyzer</span>
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
             Upload your resume to receive an instantaneous review, check your ATS compatibility score, discover missing skills, and get critical recommendations.
@@ -266,12 +266,12 @@ export default function ResumeAnalyzerPage() {
               {...getRootProps()} 
               className={`border-2 border-dashed rounded-3xl p-6 sm:p-10 md:p-14 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center space-y-4 shadow-sm bg-white dark:bg-zinc-900/40 hover:bg-zinc-50 dark:hover:bg-zinc-900/80 ${
                 isDragActive 
-                  ? "border-green-600 bg-green-500/5 scale-[0.99]" 
-                  : "border-zinc-300 dark:border-zinc-800 hover:border-green-500/60"
+                  ? "border-blue-600 bg-blue-500/5 scale-[0.99]" 
+                  : "border-zinc-300 dark:border-zinc-800 hover:border-blue-500/60"
               }`}
             >
               <input {...getInputProps()} />
-              <div className="p-4 rounded-full bg-green-500/10 text-green-700 dark:text-green-400">
+              <div className="p-4 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
                 <UploadCloud className="w-10 h-10" />
               </div>
               <div className="space-y-1">
@@ -279,7 +279,7 @@ export default function ResumeAnalyzerPage() {
                   {isDragActive ? "Drop your resume here" : "Drag & drop your resume"}
                 </p>
                 <p className="text-sm text-zinc-500">
-                  or <span className="text-green-700 dark:text-green-400 font-semibold hover:underline">browse files</span> from your computer
+                  or <span className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">browse files</span> from your computer
                 </p>
               </div>
               <p className="text-xs text-zinc-400">
@@ -316,7 +316,7 @@ export default function ResumeAnalyzerPage() {
                   </button>
                   <button 
                     onClick={handleAnalyze} 
-                    className="bg-green-700 hover:bg-green-600 active:scale-95 text-white text-xs md:text-sm font-bold px-5 py-2 rounded-xl transition duration-150 flex items-center gap-2 shadow-sm shrink-0"
+                    className="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs md:text-sm font-bold px-5 py-2 rounded-xl transition duration-150 flex items-center gap-2 shadow-sm shrink-0"
                   >
                     <Sparkles className="w-4 h-4" />
                     Analyze Resume
@@ -332,7 +332,7 @@ export default function ResumeAnalyzerPage() {
           <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-sm text-center space-y-6">
             <div className="flex flex-col items-center justify-center space-y-4">
               <div className="relative flex items-center justify-center">
-                <RefreshCw className="w-12 h-12 text-green-700 dark:text-green-400 animate-spin" />
+                <RefreshCw className="w-12 h-12 text-blue-600 dark:text-blue-400 animate-spin" />
                 <div className="absolute inset-0 w-12 h-12 border-4 border-zinc-100 dark:border-zinc-800 rounded-full"></div>
               </div>
               <div className="space-y-1.5">

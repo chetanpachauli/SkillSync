@@ -43,3 +43,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local user data & auto-apply logs
+/user_data
+/test_user_data
+/logs/*.json
+

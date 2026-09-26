@@ -14,17 +14,17 @@ const Navbar = () => {
   return (
     <nav className="w-full z-10  p-2  ">
       <div className="max-w-6xl md:w-[70vw]  rounded-md mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-        <div className="flex items-center  group relative">
-        <Link href="/">
+        <div className="flex items-center group relative">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             alt="logo of skillSync"
             width={36}
             height={36}
             src="/images/c-square.png"
-            className="dark:invert"
+            className="rounded-md object-cover transition-transform group-hover:scale-105"
           />
           </Link>  
-          <span className="text-2xl  font-extrabold tracking-tight opacity-0 group-hover:opacity-100 delay-100 transition-all duration-150 group-hover:translate-x-2  text-zinc-800 dark:text-white">
+          <span className="text-2xl font-extrabold tracking-tight opacity-0 group-hover:opacity-100 delay-100 transition-all duration-150 group-hover:translate-x-2 text-zinc-800 dark:text-white">
             Welcome 
           </span>
         </div>
@@ -48,6 +48,12 @@ const Navbar = () => {
             className="hover:text-blue-600 hover:underline transition duration-200"
           >
             Interview Prep
+          </Link>
+          <Link
+            href="/auto-apply"
+            className="hover:text-blue-600 hover:underline transition duration-200"
+          >
+            Auto Applier
           </Link>
           <Link
             href="#features"
@@ -125,6 +131,12 @@ const Navbar = () => {
             className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
           >
             Interview Prep
+          </Link>
+          <Link
+            href="/auto-apply"
+            className="w-full text-center py-2 border-b hover:text-blue-600 hover:underline transition"
+          >
+            Auto Applier
           </Link>
           <Link
             href="#features"

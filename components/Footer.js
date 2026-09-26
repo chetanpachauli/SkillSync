@@ -15,7 +15,7 @@ const Footer = () => {
             width={36}
             height={36}
             src="/images/c-square.png"
-            className="dark:invert"
+            className="rounded-md object-cover"
           />
           <p className="text-sm">
             Your AI-driven companion for smarter career growth. Interview
@@ -35,7 +35,12 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/resume" className="hover:underline">
+              <Link href="/auto-apply" className="hover:underline">
+                Auto Applier
+              </Link>
+            </li>
+            <li>
+              <Link href="/resume-analyzer" className="hover:underline">
                 Resume Analyzer
               </Link>
             </li>

@@ -1,0 +1,47 @@
+{
+  "fullName": "Chetan Pachauli",
+  "email": "chetanpachauli@gmail.com",
+  "phone": "+918218102253",
+  "location": "India",
+  "targetRoles": [
+    "Full Stack Developer",
+    "Frontend Developer",
+    "React Developer",
+    "Node.js Developer",
+    "Python Developer",
+    "DevOps Engineer"
+  ],
+  "targetLocations": [
+    "Remote",
+    "India",
+    "Bangalore",
+    "Gurgaon",
+    "delhi",
+    "noida"
+  ],
+  "totalExperienceYears": 1,
+  "techExperience": {
+    "JavaScript": 3,
+    "TypeScript": 2,
+    "React": 2,
+    "Next.js": 2,
+    "Node.js": 2,
+    "Python": 2,
+    "NumPy": 1,
+    "Pandas": 1,
+    "SQL": 2,
+    "MongoDB": 2,
+    "AWS": 1,
+    "Docker": 1,
+    "Jenkins": 1,
+    "HTML/CSS": 3,
+    "Git": 3
+  },
+  "noticePeriodDays": 30,
+  "currentSalaryLPA": 2,
+  "expectedSalaryLPA": 3,
+  "workAuthorization": "Yes",
+  "requiresSponsorship": "No",
+  "dailyLimit": 15,
+  "dryRun": false
+}
